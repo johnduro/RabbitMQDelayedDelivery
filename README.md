@@ -13,7 +13,7 @@ Here is a schema of the implementation :
 ## Usage
 
 ``` shell
-$ python --depth N [OPTION(S)]
+$ python main.py --depth N [OPTION(S)]
 ```
 
 
@@ -21,7 +21,7 @@ $ python --depth N [OPTION(S)]
 
  - `depth` : the size max of the int, in bits, used to determine the max duration of delayed delivery in seconds. Can be between 1 and 30. This argument in mandatory.
  - `vhost` : the vhost used for the configuration file.
- - `prefix` : a prefix used for the exchanges and queue, by default `ndd` (Native Delayed Delivery).
+ - `prefix` : a prefix used for the exchanges and queue, by default `ndd` (Native Delayed Delivery), put an empty string for no prefix.
  - `dry-run` : print the configuration and exit.
  - `destination` : path of the destination file, if none given default file will be `rabbitmq-native-delayed-delivery-configuration.json`.
  - `only-time` : only print the max time and exit.

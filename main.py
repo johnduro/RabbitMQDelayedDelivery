@@ -82,7 +82,7 @@ class _RabbitMqConfigGenerator:
         ])
 
 
-    def getQueue(self, name, previousExchange, ttl):
+    def getQueue(self, name, previousExchange, ttlInSeconds):
         return OrderedDict([
             ('vhost', self.config.vhost),
             ('durable', True),
@@ -90,7 +90,7 @@ class _RabbitMqConfigGenerator:
             ('name', self.getPrefix() + name),
             ('arguments', {
                 'x-dead-letter-exchange': previousExchange,
-                'x-message-ttl': ttl * 1000,
+                'x-message-ttl': ttlInSeconds * 1000,
             })
         ])
 
@@ -106,7 +106,7 @@ class _RabbitMqConfigGenerator:
 
 
     def getRoutingKey(self, bit, value):
-        bits = ['*' for x in range(self.config.depth + 2)]
+        bits = ['#'] + ['*' for x in range(self.config.depth + 1)]
         bits[bit + 1] = value
         bits.reverse()
 
